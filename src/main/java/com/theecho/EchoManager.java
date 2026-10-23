@@ -175,10 +175,12 @@ public final class EchoManager {
         if (f != null) {
             if (t > f.until()) {
                 FLICKERS.remove(p.getUuid());
-            } else if (t % 3 == 0) {
-                for (BlockPos pos : f.torches()) {
-                    w.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5,
-                            2, 0.04, 0.04, 0.04, 0.0);
+            // Después de 5 minutos, el Original empieza a llamarte
+if (rt > 6000 && rt % 100 == 0 && d.realmOriginal != null) {
+    BlockPos o = d.realmOriginal;
+    w.spawnParticles(ParticleTypes.END_ROD, o.getX() + 0.5, o.getY() + 1.0, o.getZ() + 0.5,
+            8, 0.15, 1.5, 0.15, 0.01);
+}
                 }
             }
         }
